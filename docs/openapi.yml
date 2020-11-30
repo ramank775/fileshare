@@ -4,7 +4,7 @@ info:
   version: '1.0'
   license:
     name: MIT
-    url: https://github.com/ramank775/fileshare-server/blob/59b3d85eb4f2ad25f669e74ea36869afeb80284e/LICENSE
+    url: https://github.com/ramank775/fileshare-server/blob/main/LICENSE
   description: one9x file share api
   contact:
     name: Raman
