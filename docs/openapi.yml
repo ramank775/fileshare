@@ -1,0 +1,127 @@
+openapi: '3.0.2'
+info:
+  title: File Share
+  version: '1.0'
+  license:
+    name: MIT
+    url: https://github.com/ramank775/fileshare-server/blob/59b3d85eb4f2ad25f669e74ea36869afeb80284e/LICENSE
+  description: one9x file share api
+  contact:
+    name: Raman
+    email: raman.jay14@gmail.com
+    url: https://github.com/ramank775
+servers:
+  - url: https://fileshareapi.one9x.com
+
+tags:
+  - name: client
+  - name: server
+paths:
+  /file:
+    get:
+      tags:
+        - "client"
+      parameters:
+        - name: tkn
+          in: query
+          allowEmptyValue: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+            video/*:
+              schema:
+                type: string
+                format: binary
+            application/vnd.*:
+              schema:
+                type: string
+                format: binary
+            text/*:
+              schema:
+                type: string
+                format: text
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+            application/*:
+              schema:
+                type: string
+    post:
+      tags:
+        - "client"
+      parameters:
+        - name: tkn
+          in: query
+          allowEmptyValue: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /generate:
+    post:
+      tags:
+        - "server"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    content_length:
+                      type: integer
+                      format: "int64"
+                    content_type:
+                      type: string
+                options:
+                  type: object
+                  properties:
+                    auth:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        options:
+                          type: object
+                    expire_in:
+                      type: integer
+                      format: "int64"
+                    usage:
+                      type: string
+                      enum:
+                        - single
+                        - multiple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  url:
+                    type: string
+      security:
+        - api_key: []
+
+components:
+  securitySchemes:
+    api_key:
+      name: api_key
+      type: apiKey
+      in: header
