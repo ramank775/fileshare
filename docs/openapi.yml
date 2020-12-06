@@ -25,6 +25,22 @@ paths:
         - name: tkn
           in: query
           allowEmptyValue: false
+          required: true
+          schema:
+            type: string
+        - name: auth_type
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: filename
+          in: query
+          description: filename param only required for particular strategy. Refer to the strategy information for required params.
+          schema:
+            type: string
+        - name: project_id
+          in: query
+          description: project_id param only required for particular strategy. Refer to the strategy information for required params.
           schema:
             type: string
       responses:
@@ -54,6 +70,28 @@ paths:
             application/*:
               schema:
                 type: string
+        '401':
+          description: Unauthroized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  message:
+                    type: string
     post:
       tags:
         - "client"
@@ -61,11 +99,86 @@ paths:
         - name: tkn
           in: query
           allowEmptyValue: false
+          required: true
           schema:
             type: string
+        - name: auth_type
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: filename
+          in: query
+          description: filename param only required for particular strategy. Refer to the strategy information for required params.
+          schema:
+            type: string
+        - name: project_id
+          in: query
+          description: project_id param only required for particular strategy. Refer to the strategy information for required params.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          image/*:
+            schema:
+              type: string
+              format: binary
+          video/*:
+            schema:
+              type: string
+              format: binary
+          application/vnd.*:
+            schema:
+              type: string
+              format: binary
+          text/*:
+            schema:
+              type: string
+              format: text
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+          application/*:
+            schema:
+              type: string
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  file:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+        '401':
+          description: Unauthroized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+                  
   /generate:
     post:
       tags:
@@ -116,8 +229,21 @@ paths:
                     type: string
                   url:
                     type: string
+        '401':
+          description: Unauthroized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  message:
+                    type: string
+
       security:
         - api_key: []
+
 
 components:
   securitySchemes:
