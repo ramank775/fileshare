@@ -1,6 +1,6 @@
 # Fileshare
 
-Fileshare is a file sharing service as well as can act as file storage. This project is to provide flexible auth options, support multiple storage options available along with providing the basic file operation like upload a file, share a file, delete a file.
+Fileshare is a service that can be used for file sharing as well as for file storage. The main idea behind this project is to support multiple storage options along with  the basic file operation like file upload,share and delete.
 
 ## Features 
 
@@ -10,7 +10,7 @@ Fileshare is a file sharing service as well as can act as file storage. This pro
 
 ## Why this project?
 
-While working on [Vartalap](https://vartalap.one9x.com), in order to implement features like profile pic, file sharing, a file server is required. Current vartalap server are not powerful enough to support another service like file(upload, downloads). So it is decided to use external service for file operations while maintaining the security, although there are number of  storage options like AWS S3, Azure storage but none of the service provides custom auth. One solution is to perform auth on [Vartalap](https://vartalap.one9x.com) server and then redirect them to desire service, but that will defeat the purpose as vartalap server is not that powerful to handle more external requests.
+While working on [Vartalap](https://vartalap.one9x.com), I came across features like uploading profile pic, file sharing where a file server was required. Current vartalap servers are not powerful enough to support another service for operations like file upload, downloads. So I decided to use an external service for these operations while maintaining the application security. Although there are number of  storage options like AWS S3, Azure storage but none of the service provides custom auth. One solution is to perform auth on [Vartalap](https://vartalap.one9x.com) server and then redirect them to desire service, but that will defeat the purpose as vartalap server is not that powerful to handle more external requests.
 
 ## Auth Strategy
 
@@ -32,7 +32,7 @@ Sequence:
     1. Client App perform auth with the App server.
     2. App Server returns the jwt token.
     3. Client App use the jwt_token with other required options to perform upload/download.
-    4. Fileshare validates the jwt and proces the request.
+    4. Fileshare validates the jwt and process the request.
 
 
 
