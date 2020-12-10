@@ -32,7 +32,7 @@ Sequence:
     1. Client App perform auth with the App server.
     2. App Server returns the jwt token.
     3. Client App use the jwt_token with other required options to perform upload/download.
-    4. Fileshare validates the jwt and proces the request.
+    4. Fileshare validates the jwt and process the request.
 
 
 
