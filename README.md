@@ -7,6 +7,7 @@ Fileshare is a service that can be used for file sharing as well as for file sto
 - Presigned link generation for upload, download operation with specific criteria like time bound link, one time use
 - Ablilty to validate the presigned operation using custom auth schemes
 - Project based configuration
+- Validate file hash if set on link generation
 
 ## Why this project?
 
